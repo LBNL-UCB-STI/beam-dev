@@ -40,12 +40,16 @@ RUN set -o errexit -o nounset \
 	&& mkdir /home/dev/.gradle \
 	&& chown -R dev:dev /home/dev
 
-# Create Gradle volume
-USER dev
-VOLUME "/home/dev/.gradle"
-VOLUME "/home/dev"
+RUN mkdir /home/dev/beam \
+	ln -s /home/dev/beam /beam \
+	ln -s /home/dev/.gradle /.gradle
 
-WORKDIR /home/dev
+# Create Gradle and Beam volume
+USER dev
+VOLUME "/.gradle"
+VOLUME "/beam"
+
+WORKDIR /beam
 
 RUN set -o errexit -o nounset \
 	&& echo "Testing Gradle installation" \
