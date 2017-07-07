@@ -41,8 +41,8 @@ RUN set -o errexit -o nounset \
 	&& chown -R dev:dev /home/dev
 
 RUN mkdir /home/dev/beam \
-	ln -s /home/dev/beam /beam \
-	ln -s /home/dev/.gradle /.gradle
+	&& ln -s /home/dev/beam /beam \
+	&& ln -s /home/dev/.gradle /.gradle
 
 # Create Gradle and Beam volume
 USER dev
